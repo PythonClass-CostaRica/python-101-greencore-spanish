@@ -15,6 +15,6 @@ Este repositorio contiene ejemplos vistos en el curso de Introducción a la Prog
 ```bash
 # virtualenv -p python3 venv
 # source venv/bin/activate
-# pip install requirements.txt
+# pip install -r requirements.txt
 ```
 
