@@ -1,15 +1,5 @@
-# CircuitPlaygroundExpress_NeoPixel
-
+from adafruit_circuitplayground.express import cpx
 import time
-import board
-import digitalio
-import neopixel
-from neopixel import (
-    NeoPixel
-)
-from analogio import AnalogIn
-from digitalio import DigitalInOut, Direction, Pull
-
 
 RED = (255, 0, 0)
 YELLOW = (255, 150, 0)
@@ -18,30 +8,19 @@ CYAN = (0, 255, 255)
 BLUE = (0, 0, 255)
 PURPLE = (180, 0, 255)
 
-pixels = NeoPixel(board.NEOPIXEL, 10, brightness=1.0)
-
-
-button_left = DigitalInOut(board.D4)
-button_left.direction = Direction.INPUT
-
-button_right = DigitalInOut(board.D5)
-button_right.direction = Direction.INPUT
-
-switch = DigitalInOut(board.D7)
-switch.direction = Direction.INPUT
-switch.pull = Pull.UP
-
-
+cpx.pixels.brightness = 0.1
 
 while True:
-
-    if button_left.value and button_right.value and not switch.value:
-        pixels.fill(BLUE)
+    if cpx.button_a and cpx.button_b and not cpx.switch:
+        cpx.pixels.fill(BLUE)
         time.sleep(5)
-    elif (button_left.value or button_right.value) and switch.value:
-        pixels.fill(YELLOW)
+    elif (cpx.button_a or cpx.button_b) and cpx.switch:
+        cpx.pixels.fill(YELLOW)
         time.sleep(1)
     else:
-        pixels.fill(RED)
-    pixels.show()
-
+        cpx.pixels.fill(RED)
+    cpx.pixels.show()
+    print("a:"+str(cpx.button_a))
+    print("b:"+str(cpx.button_b))
+    print("sw:"+str(cpx.switch))
+    time.sleep(0.5)
